@@ -29,6 +29,7 @@ export interface IpniResponseItem {
 export interface IpniContentRoutingInit {
   /**
    * A concurrency limit to avoid request flood in web browser (default: 4)
+   *
    * @see https://github.com/libp2p/js-libp2p-delegated-content-routing/issues/12
    */
   concurrentRequests?: number
@@ -50,21 +51,21 @@ const defaultValues = {
 class IpniContentRouting implements ContentRouting, Startable {
   private started: boolean
   private readonly httpQueue: PQueue
-  private shutDownController: AbortController
-  private clientUrl: URL
-  private timeout: number
+  private readonly shutDownController: AbortController
+  private readonly clientUrl: URL
+  private readonly timeout: number
 
   /**
    * Create a new DelegatedContentRouting instance
    */
-  constructor (url: URL, init: IpniContentRoutingInit = {}) {
+  constructor (url: string | URL, init: IpniContentRoutingInit = {}) {
     log('enabled IPNI routing via', url)
     this.started = false
     this.shutDownController = new AbortController()
     this.httpQueue = new PQueue({
       concurrency: init.concurrentRequests ?? defaultValues.concurrentRequests
     })
-    this.clientUrl = url
+    this.clientUrl = url instanceof URL ? url : new URL(url)
     this.timeout = init.timeout ?? defaultValues.timeout
   }
 
@@ -114,7 +115,6 @@ class IpniContentRouting implements ContentRouting, Startable {
       }
     } catch (err) {
       log.error('findProviders errored:', err)
-      throw err
     } finally {
       signal.clear()
       onFinish.resolve()
@@ -153,6 +153,6 @@ class IpniContentRouting implements ContentRouting, Startable {
   }
 }
 
-export function ipniContentRouting (url: URL, init: IpniContentRoutingInit = {}): () => ContentRouting {
+export function ipniContentRouting (url: string | URL, init: IpniContentRoutingInit = {}): () => ContentRouting {
   return () => new IpniContentRouting(url, init)
 }

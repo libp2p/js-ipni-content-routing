@@ -38,7 +38,7 @@ import { ipniContentRouting } from '@libp2p/ipni-content-routing'
 
 const node = await createLibp2p({
   peerRouting: [
-    ipniContentRouting(new URL('https://cid.contact'))
+    ipniContentRouting('https://cid.contact')
   ]
   //.. other config
 })
