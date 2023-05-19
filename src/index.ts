@@ -9,7 +9,9 @@ import ndjson from 'iterable-ndjson'
 import defer from 'p-defer'
 import PQueue from 'p-queue'
 import type { ContentRouting } from '@libp2p/interface-content-routing'
+import type { PeerId } from '@libp2p/interface-peer-id'
 import type { PeerInfo } from '@libp2p/interface-peer-info'
+import type { PeerStore } from '@libp2p/interface-peer-store'
 import type { AbortOptions } from '@libp2p/interfaces'
 import type { Startable } from '@libp2p/interfaces/startable'
 import type { Multiaddr } from '@multiformats/multiaddr'
@@ -40,6 +42,11 @@ export interface IpniContentRoutingInit {
   timeout?: number
 }
 
+export interface IpniContentRoutingComponents {
+  peerId: PeerId
+  peerStore: PeerStore
+}
+
 const defaultValues = {
   concurrentRequests: 4,
   timeout: 30e3
@@ -54,11 +61,14 @@ class IpniContentRouting implements ContentRouting, Startable {
   private readonly shutDownController: AbortController
   private readonly clientUrl: URL
   private readonly timeout: number
+  private readonly peerId: PeerId
+  private readonly peerStore: PeerStore
+  private agentVersion?: string
 
   /**
    * Create a new DelegatedContentRouting instance
    */
-  constructor (url: string | URL, init: IpniContentRoutingInit = {}) {
+  constructor (url: string | URL, init: IpniContentRoutingInit = {}, components: IpniContentRoutingComponents) {
     log('enabled IPNI routing via', url)
     this.started = false
     this.shutDownController = new AbortController()
@@ -67,6 +77,8 @@ class IpniContentRouting implements ContentRouting, Startable {
     })
     this.clientUrl = url instanceof URL ? url : new URL(url)
     this.timeout = init.timeout ?? defaultValues.timeout
+    this.peerId = components.peerId
+    this.peerStore = components.peerStore
   }
 
   isStarted (): boolean {
@@ -81,6 +93,21 @@ class IpniContentRouting implements ContentRouting, Startable {
     this.httpQueue.clear()
     this.shutDownController.abort()
     this.started = false
+  }
+
+  private async getAgentVersion (): Promise<string> {
+    if (this.agentVersion == null) {
+      const peer = await this.peerStore.get(this.peerId)
+      const agentVersionBuf = peer.metadata.get('AgentVersion')
+
+      if (agentVersionBuf != null) {
+        this.agentVersion = new TextDecoder().decode(agentVersionBuf)
+      } else {
+        this.agentVersion = ''
+      }
+    }
+
+    return this.agentVersion
   }
 
   async * findProviders (key: CID, options: AbortOptions = {}): AsyncIterable<PeerInfo> {
@@ -99,7 +126,13 @@ class IpniContentRouting implements ContentRouting, Startable {
       await onStart.promise
 
       const resource = `${this.clientUrl}cid/${key.toString()}?cascade=ipfs-dht`
-      const getOptions = { headers: { Accept: 'application/x-ndjson' }, signal }
+      const getOptions = {
+        headers: {
+          Accept: 'application/x-ndjson',
+          'User-Agent': await this.getAgentVersion()
+        },
+        signal
+      }
       const a = await fetch(resource, getOptions)
 
       if (a.body == null) {
@@ -153,6 +186,6 @@ class IpniContentRouting implements ContentRouting, Startable {
   }
 }
 
-export function ipniContentRouting (url: string | URL, init: IpniContentRoutingInit = {}): () => ContentRouting {
-  return () => new IpniContentRouting(url, init)
+export function ipniContentRouting (url: string | URL, init: IpniContentRoutingInit = {}): (components: IpniContentRoutingComponents) => ContentRouting {
+  return (components: IpniContentRoutingComponents) => new IpniContentRouting(url, init, components)
 }
