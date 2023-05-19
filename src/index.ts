@@ -1,19 +1,19 @@
-import PQueue from 'p-queue'
-import type { AbortOptions } from '@libp2p/interfaces'
-import type { ContentRouting } from '@libp2p/interface-content-routing'
-import type { PeerInfo } from '@libp2p/interface-peer-info'
-import type { Startable } from '@libp2p/interfaces/startable'
-import type { CID } from 'multiformats/cid'
+import { CodeError } from '@libp2p/interfaces/errors'
+import { logger } from '@libp2p/logger'
 import { peerIdFromString } from '@libp2p/peer-id'
 import { multiaddr } from '@multiformats/multiaddr'
-import { logger } from '@libp2p/logger'
-import defer from 'p-defer'
 import { anySignal } from 'any-signal'
-import type { Multiaddr } from '@multiformats/multiaddr'
-import { CodeError } from '@libp2p/interfaces/errors'
 import toIt from 'browser-readablestream-to-it'
 // @ts-expect-error no types
 import ndjson from 'iterable-ndjson'
+import defer from 'p-defer'
+import PQueue from 'p-queue'
+import type { ContentRouting } from '@libp2p/interface-content-routing'
+import type { PeerInfo } from '@libp2p/interface-peer-info'
+import type { AbortOptions } from '@libp2p/interfaces'
+import type { Startable } from '@libp2p/interfaces/startable'
+import type { Multiaddr } from '@multiformats/multiaddr'
+import type { CID } from 'multiformats/cid'
 
 const log = logger('ipni-content-routing')
 
@@ -92,7 +92,7 @@ class IpniContentRouting implements ContentRouting, Startable {
 
     void this.httpQueue.add(async () => {
       onStart.resolve()
-      return await onFinish.promise
+      return onFinish.promise
     })
 
     try {
