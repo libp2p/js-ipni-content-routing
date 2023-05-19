@@ -4,6 +4,7 @@ import { peerIdFromString } from '@libp2p/peer-id'
 import { multiaddr } from '@multiformats/multiaddr'
 import { anySignal } from 'any-signal'
 import toIt from 'browser-readablestream-to-it'
+// @ts-expect-error no types
 import ndjson from 'iterable-ndjson'
 import defer from 'p-defer'
 import PQueue from 'p-queue'
@@ -13,7 +14,6 @@ import type { AbortOptions } from '@libp2p/interfaces'
 import type { Startable } from '@libp2p/interfaces/startable'
 import type { Multiaddr } from '@multiformats/multiaddr'
 import type { CID } from 'multiformats/cid'
-// @ts-expect-error no types
 
 const log = logger('ipni-content-routing')
 
