@@ -1,3 +1,14 @@
+## [2.0.0](https://github.com/libp2p/js-ipni-content-routing/compare/v1.0.2...v2.0.0) (2023-08-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* requires libp2p@0.46.x
+
+### Dependencies
+
+* update deps to libp2p@0.46.x ([#23](https://github.com/libp2p/js-ipni-content-routing/issues/23)) ([4b51ef9](https://github.com/libp2p/js-ipni-content-routing/commit/4b51ef93670492abbc160123823413077c3eb1a3))
+
 ## [1.0.2](https://github.com/libp2p/js-ipni-content-routing/compare/v1.0.1...v1.0.2) (2023-08-05)
 
 
