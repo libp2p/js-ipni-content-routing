@@ -1,3 +1,22 @@
+## [1.0.2](https://github.com/libp2p/js-ipni-content-routing/compare/v1.0.1...v1.0.2) (2023-08-05)
+
+
+### Trivial Changes
+
+* Update .github/workflows/stale.yml [skip ci] ([93396ea](https://github.com/libp2p/js-ipni-content-routing/commit/93396ea8662d5d158ca6ca56f36b529b871f4eac))
+* Update .github/workflows/stale.yml [skip ci] ([54703e3](https://github.com/libp2p/js-ipni-content-routing/commit/54703e3e2634f42ddc15abcafa78efd5be83c549))
+* Update .github/workflows/stale.yml [skip ci] ([6953529](https://github.com/libp2p/js-ipni-content-routing/commit/6953529896b1767def38061ed38e0a46072d5eec))
+
+
+### Documentation
+
+* update readme with api info ([#11](https://github.com/libp2p/js-ipni-content-routing/issues/11)) ([07eeff4](https://github.com/libp2p/js-ipni-content-routing/commit/07eeff4e94aa11f5094cdb7997f907968e86d911)), closes [#3](https://github.com/libp2p/js-ipni-content-routing/issues/3)
+
+
+### Dependencies
+
+* **dev:** bump aegir from 39.0.13 to 40.0.8 ([#17](https://github.com/libp2p/js-ipni-content-routing/issues/17)) ([251be23](https://github.com/libp2p/js-ipni-content-routing/commit/251be2351ba53b9c00c7ad38ea42964d05e4f63a))
+
 ## [1.0.1](https://github.com/libp2p/js-ipni-content-routing/compare/v1.0.0...v1.0.1) (2023-05-19)
 
 
