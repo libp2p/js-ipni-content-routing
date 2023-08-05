@@ -9,12 +9,19 @@
 
 ## Table of contents <!-- omit in toc -->
 
+- [About](#about)
 - [Install](#install)
   - [Browser `<script>` tag](#browser-script-tag)
 - [Example](#example)
 - [API Docs](#api-docs)
 - [License](#license)
 - [Contribution](#contribution)
+
+## About
+
+This is an implementation of the libp2p [content routing interface](https://libp2p.github.io/js-libp2p-interfaces/interfaces/_libp2p_interface_content_routing.ContentRouting.html) that uses an [IPNI](https://github.com/ipni/specs) HTTP endpoint.
+
+An alternative is [HTTP Routing V1](https://github.com/libp2p/js-reframe-content-routing) (previously known as Reframe) but the advantage of IPNI at least as of 2023-05-19 is that it returns results in a streaming fashion which can be faster.  Note that this will change with the rollout of [IPIP-410](https://github.com/ipfs/specs/pull/410), at which point one can use the HTTP Routing V1 interface/implementation directly.
 
 ## Install
 
