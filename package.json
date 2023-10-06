@@ -11,10 +11,6 @@
   "bugs": {
     "url": "https://github.com/libp2p/js-ipni-content-routing/issues"
   },
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=7.0.0"
-  },
   "type": "module",
   "types": "./dist/src/index.d.ts",
   "files": [
@@ -32,6 +28,7 @@
   "eslintConfig": {
     "extends": "ipfs",
     "parserOptions": {
+      "project": true,
       "sourceType": "module"
     }
   },
@@ -149,7 +146,7 @@
   },
   "devDependencies": {
     "@libp2p/peer-id-factory": "^3.0.2",
-    "aegir": "^40.0.8",
+    "aegir": "^41.0.0",
     "body-parser": "^1.20.2",
     "it-all": "^3.0.1"
   }
