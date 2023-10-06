@@ -1,3 +1,16 @@
+## [2.0.1](https://github.com/libp2p/js-ipni-content-routing/compare/v2.0.0...v2.0.1) (2023-10-06)
+
+
+### Trivial Changes
+
+* add or force update .github/workflows/js-test-and-release.yml ([#25](https://github.com/libp2p/js-ipni-content-routing/issues/25)) ([3edb929](https://github.com/libp2p/js-ipni-content-routing/commit/3edb92969c61ad99cf08baa075e3c64091f72c97))
+* delete templates [skip ci] ([#24](https://github.com/libp2p/js-ipni-content-routing/issues/24)) ([8113915](https://github.com/libp2p/js-ipni-content-routing/commit/81139152cbb4ca079fcaec115c4b08c09df3b1b0))
+
+
+### Dependencies
+
+* **dev:** bump aegir from 40.0.13 to 41.0.0 ([#27](https://github.com/libp2p/js-ipni-content-routing/issues/27)) ([157393b](https://github.com/libp2p/js-ipni-content-routing/commit/157393b88e923910405ac77daad72488267726ad))
+
 ## [2.0.0](https://github.com/libp2p/js-ipni-content-routing/compare/v1.0.2...v2.0.0) (2023-08-05)
 
 

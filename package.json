@@ -1,6 +1,6 @@
 {
   "name": "@libp2p/ipni-content-routing",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Use an IPNI service to discover content providers",
   "license": "Apache-2.0 OR MIT",
   "homepage": "https://github.com/libp2p/js-ipni-content-routing#readme",
