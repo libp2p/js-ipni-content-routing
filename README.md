@@ -1,3 +1,11 @@
+# ⛔️ DEPRECATED
+
+As of `1.1.0` the [@helia/delegated-routing-v1-http-api-client](https://www.npmjs.com/package/@helia/delegated-routing-v1-http-api-client) module supports both the libp2p [ContentRouting](https://libp2p.github.io/js-libp2p/interfaces/_libp2p_interface.content_routing.ContentRouting.html) and [PeerRouting](https://libp2p.github.io/js-libp2p/interfaces/_libp2p_interface.peer_routing.PeerRouting.html) interfaces so should be used instead.
+
+_This library will not be maintained._
+
+---
+
 # @libp2p/ipni-content-routing <!-- omit in toc -->
 
 [![libp2p.io](https://img.shields.io/badge/project-libp2p-yellow.svg?style=flat-square)](http://libp2p.io/)
@@ -9,13 +17,14 @@
 
 ## Table of contents <!-- omit in toc -->
 
-- [Install](#install)
-  - [Browser `<script>` tag](#browser-script-tag)
-- [About](#about)
-- [Example](#example)
-- [API Docs](#api-docs)
-- [License](#license)
-- [Contribution](#contribution)
+- [⛔️ DEPRECATED](#️-deprecated)
+  - [Install](#install)
+    - [Browser `<script>` tag](#browser-script-tag)
+  - [About](#about)
+  - [Example](#example)
+  - [API Docs](#api-docs)
+  - [License](#license)
+  - [Contribution](#contribution)
 
 ## Install
 
